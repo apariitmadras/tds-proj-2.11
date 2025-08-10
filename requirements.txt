@@ -10,3 +10,4 @@ duckdb==1.0.0
 pyarrow==17.0.0
 matplotlib==3.9.0
 python-multipart
+html5lib
