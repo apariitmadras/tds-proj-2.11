@@ -1,5 +1,5 @@
 ## executor/sandbox.py
-```python
+
 import subprocess, tempfile, os, sys, textwrap
 from typing import Tuple
 
