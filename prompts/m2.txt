@@ -16,7 +16,7 @@ Return ONE JSON object with these keys (no extra prose):
   "coding_prompt": "..."
 }
 
-RULES FOR OutputSchema
+RULES — OutputSchema
 - Mirror the user’s requested output format exactly. Do NOT invent fields.
 - If the user specified an array:
   {
@@ -35,7 +35,7 @@ RULES FOR OutputSchema
 - Include explicit constraints from the user (e.g., image < 100000 bytes). Do NOT add constraints the user did not request.
 - For floats, include optional "round" only if the user asked for a specific precision.
 
-RULES FOR CodePlan
+RULES — CodePlan
 - Keep it minimal and concrete, aligned to the task. Include:
   - "allowed_libs": subset of ["requests","beautifulsoup4","lxml","html5lib","pandas","matplotlib","duckdb","pyarrow","numpy"].
   - "net_allowlist": domains derived strictly from sources (e.g., "wikipedia.org", "s3.amazonaws.com"). Only what is necessary.
@@ -50,8 +50,9 @@ RULES FOR CodePlan
   - "compute_notes": concise, ordered steps to get each required field (q1..qn) from the data.
   - "plot_notes": only if a plot is requested (style, axes, compression cap).
   - "time_budget_sec": copy from task_fingerprint or use a sensible default if absent.
+  - **Canonical columns**: instruct the code to build and use only `_rank, _peak, _title, _gross, _year` for all computations and plots.
 
-RULES FOR coding_prompt
+RULES — coding_prompt
 - Short imperative brief for the next model to write ONE Python script implementing the CodePlan and producing the final output that conforms exactly to OutputSchema.
 - Explicitly instruct: "Print ONLY the final result to stdout. No logs, no explanations."
 
