@@ -23,8 +23,11 @@ GENERAL RULES
 
 WEB TABLE GUIDANCE (when applicable)
 - Use pandas.read_html(URL, flavor="bs4") to load tables.
+- **Normalize headers robustly** (handles ints & MultiIndex):
+  - If df.columns is MultiIndex → flatten: `[' '.join(str(x) for x in t if x is not None) for t in df.columns.to_flat_index()]`.
+  - Else → `[str(c) for c in df.columns]`.
+  - Then lower/strip: `[c.strip().lower() for c in cols]` and assign back to `df.columns`.
 - Select the target table by checking normalized headers for required keywords (e.g., a table that contains both "world" & "gross", and also "year").
-- Normalize headers: df.columns = [c.strip().lower() for c in df.columns].
 - Map target columns by substring match (e.g., "rank", "peak", "title", "world" + "gross", "year").
 
 DUCKDB GUIDANCE (when applicable)
