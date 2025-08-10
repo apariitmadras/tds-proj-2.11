@@ -8,7 +8,7 @@ def run_code(code: str, timeout_sec: int = 90) -> Tuple[int, str, str]:
  """
  with tempfile.TemporaryDirectory() as td:
  script_path = os.path.join(td, "exec.py")
-3
+
  with open(script_path, "w", encoding="utf-8") as f:
  f.write(code)
  try:
