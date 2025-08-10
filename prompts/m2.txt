@@ -47,10 +47,10 @@ RULES — CodePlan
     * Correlation: Pearson between specified numeric columns; drop NaNs.
     * Plots: use matplotlib; create required chart (e.g., scatter) and, if requested, add a **dotted red** regression line; small figure; compress PNG under any max_bytes using a DPI loop.
     * Parquet/S3/HTTP: use DuckDB with httpfs; query directly via URL; select only needed columns/rows.
-  - "compute_notes": concise, ordered steps to get each required field (q1..qn) from the data.
+  - "compute_notes": concise, ordered steps to get each required field (q1..qn) from the data. **Build canonical columns** `_rank, _peak, _title, _gross, _year` and use only these thereafter.
   - "plot_notes": only if a plot is requested (style, axes, compression cap).
   - "time_budget_sec": copy from task_fingerprint or use a sensible default if absent.
-  - **Canonical columns**: instruct the code to build and use only `_rank, _peak, _title, _gross, _year` for all computations and plots.
+  - **Year mapping rule**: choose a year-like column with any_of=["year","release","date"]; if absent, extract year from title via regex.
 
 RULES — coding_prompt
 - Short imperative brief for the next model to write ONE Python script implementing the CodePlan and producing the final output that conforms exactly to OutputSchema.
