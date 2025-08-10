@@ -13,6 +13,7 @@ GENERAL RULES
 - Never subset by a hard-coded list of column names. Always discover columns by tokens.
 - Use matplotlib; set a non-interactive backend.
 - Build **canonical columns** and use only these thereafter: `_rank, _peak, _title, _gross, _year`.
+- **Never index a DataFrame with the direct result of find_col(...).** Always assign to a variable, check for None, and use a safe fallback.
 
 REQUIRED HELPERS & NORMALIZATION (include in the script)
 ```python
